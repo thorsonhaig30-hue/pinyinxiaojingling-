@@ -86,8 +86,9 @@ fun MainScreen(viewModel: GameViewModel) {
                 AnimatedContent(
                     targetState = uiState,
                     transitionSpec = {
-                        slideInHorizontally { width -> width } + fadeIn() with
-                                slideOutHorizontally { width -> -width } + fadeOut()
+                        (slideInHorizontally { width -> width } + fadeIn()).togetherWith(
+                            slideOutHorizontally { width -> -width } + fadeOut()
+                        )
                     },
                     label = "MainContentTransition"
                 ) { state ->
@@ -964,7 +965,8 @@ fun ElfSpriteCanvas() {
         // 1. Draw glowing magical wings (Gold-Teal gradients)
         val wingBrush = Brush.radialGradient(
             colors = listOf(Color(0xFFE0F2F1), Color(0xFF80CBC4), Color(0x00FFFFFF)),
-            center = Offset(w / 2, h / 2)
+            center = Offset(w / 2f, h / 2f),
+            radius = w * 0.49f
         )
         // Left Wing
         drawOval(
@@ -992,8 +994,8 @@ fun ElfSpriteCanvas() {
         // 3. Leaf Hat
         val path = Path().apply {
             moveTo(w * 0.26f, h * 0.40f)
-            quadraticBezierTo(w / 2f, h * 0.1f, w / 2f, h * 0.12f)
-            quadraticBezierTo(w * 0.74f, h * 0.40f, w * 0.74f, h * 0.40f)
+            quadraticTo(w / 2f, h * 0.10f, w / 2f, h * 0.12f)
+            quadraticTo(w * 0.74f, h * 0.40f, w * 0.74f, h * 0.40f)
             lineTo(w * 0.26f, h * 0.40f)
             close()
         }
@@ -1040,7 +1042,7 @@ fun ElfSpriteCanvas() {
         // Smile
         val mouthPath = Path().apply {
             moveTo(w * 0.46f, h * 0.60f)
-            quadraticBezierTo(w / 2f, h * 0.65f, w * 0.54f, h * 0.60f)
+            quadraticTo(w / 2f, h * 0.65f, w * 0.54f, h * 0.60f)
         }
         drawPath(
             path = mouthPath,
