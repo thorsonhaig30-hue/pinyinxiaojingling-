@@ -1,0 +1,6 @@
+{
+  "name": "拼音字词精灵",
+  "description": "专为三年级学生“灵儿姐”定制的拼音生字词巩固应用，内置AI精灵教练与本地冒险双模式，支持错题复活赛。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
